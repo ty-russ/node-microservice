@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+    mongo:
+        container_name: ms_mongo
+        image: mongo:latest
+        ports: 
+            - "27017:27017"
+        volumes:
+            - "./mongo/db:/data/db"
+
+    nginx:
+        build: ./nginx
+        container_name: ms_nginx
+        depends_on:
+            - blogs
+            - invoice
+        ports:
+            - "80:80"  
+
+    blogs:
+        build: ./blogs
+        container_name: ms_blogs
+        depends_on:
+            - "mongo"
+        volumes:
+            - "./blogs:/src/app"
+        working_dir: "/src/app"
+        ports:
+            - "5006:5000"       
+        command: npm run start   
+
+    invoice:
+        build: ./invoice
+        container_name: ms_invoice
+        depends_on:
+            - "mongo"
+        volumes:
+            - "./invoice:/src/app"
+        working_dir: "/src/app"
+        ports:
+            - "5004:5000"       
+        command: npm run start   
