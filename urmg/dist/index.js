@@ -38,8 +38,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const http = __importStar(require("http"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const express_1 = __importDefault(require("express"));
-const databaseService_1 = require("./services/databaseService");
-const logger_1 = require("./lib/logger");
+// import {databaseService} from "./services/databaseService";
+const logger_1 = __importDefault(require("./lib/logger"));
 const app = (0, express_1.default)();
 // initialize configurations
 if (!process.env.ALREADY_SET) {
@@ -51,14 +51,13 @@ const port = process.env.SERVER_PORT;
 // app.get("/", (req, res) => {
 //     res.json({})
 // });
-const logger = new logger_1.Logger();
 const server = http.createServer(app).listen(parseInt(port || '3000', 10));
 server.on('listening', () => __awaiter(void 0, void 0, void 0, function* () {
-    yield databaseService_1.databaseService.getConnection();
-    logger.log("info", `Auth App listening on ${JSON.stringify(server.address())}`);
+    // await databaseService.getConnection();
+    logger_1.default.log("info", `Auth App listening on ${JSON.stringify(server.address())}`);
 }));
 app.listen(port, () => {
     // tslint:disable-next-line:no-console
-    console.log(`server is started at http://localhost:${port}`);
+    console.log(`URMG server is started at http://localhost:${port}`);
 });
 //# sourceMappingURL=index.js.map

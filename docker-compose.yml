@@ -53,4 +53,4 @@ services:
         working_dir: "/src/app"
         ports:
             - "5005:5000"       
-        command: npm run serve  
+        command: npm run start  

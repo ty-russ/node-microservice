@@ -1,16 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
-const UserRepository_1 = require("../repositories/UserRepository");
 // talks to database layer
 const UserService_1 = require("../services/UserService");
-const service = new UserService_1.UserService(UserRepository_1.IUserRepository);
+const service = new UserService_1.UserService();
 class UserController {
 }
 exports.UserController = UserController;
 UserController.listAll = (req, res, next) => {
-    service.get().then(users => {
-        if (users && users.length > 0) {
+    service.get().then((users) => {
+        if (users) {
             res.json(users);
         }
         else {
@@ -21,7 +20,7 @@ UserController.listAll = (req, res, next) => {
     });
 };
 UserController.addNew = (req, res) => {
-    service.add(req.body).then(user => {
+    service.add(req.body).then((user) => {
         if (user) {
             res.json(user);
         }

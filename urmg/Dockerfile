@@ -14,4 +14,4 @@ COPY --chown=node:node . .
 
 EXPOSE 8080
 
-CMD [ "npm" ,"run" ,"debug" ]
+CMD [ "npm" ,"run" ,"start" ]

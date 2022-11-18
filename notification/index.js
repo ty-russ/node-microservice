@@ -23,5 +23,5 @@ const app = server(srv);
 
 // LISTENING PORT
 app.listen(port, () => {
-  console.log(`App Listening on port: ${port}`);
+  console.log(`Notification App Listening on port: ${port}`);
 });

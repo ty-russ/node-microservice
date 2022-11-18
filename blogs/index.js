@@ -14,4 +14,4 @@ app.use('/api/v1', require('./routes/posts'))
 app.use('/api/v1', require('./routes/auth'))
 app.use('/api/v1', require('./routes/features'))
 PORT  = process.env.PORT || 5000
-app.listen(PORT, console.log(`SERVER RUNNING ON PORT: ${PORT}`))
+app.listen(PORT, console.log(`BLOGS APP RUNNING ON PORT: ${PORT}`))
