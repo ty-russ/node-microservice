@@ -14,9 +14,10 @@ services:
         container_name: ms_nginx
         depends_on:
             - blogs
-            - invoice
+            - notification
+            - urmg
         ports:
-            - "80:80"  
+            - "81:81"  
 
     blogs:
         build: ./blogs
@@ -30,14 +31,26 @@ services:
             - "5006:5000"       
         command: npm run start   
 
-    invoice:
-        build: ./invoice
-        container_name: ms_invoice
+    notification:
+        build: ./notification
+        container_name: ms_notification
         depends_on:
             - "mongo"
         volumes:
-            - "./invoice:/src/app"
+            - "./notification:/src/app"
         working_dir: "/src/app"
         ports:
             - "5004:5000"       
-        command: npm run start   
+        command: npm run start  
+
+    urmg:
+        build: ./urmg
+        container_name: ms_urmg
+        depends_on:
+            - "mongo"
+        volumes:
+            - "./urmg:/src/app"
+        working_dir: "/src/app"
+        ports:
+            - "5005:5000"       
+        command: npm run serve  
